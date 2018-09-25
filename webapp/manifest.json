@@ -21,6 +21,22 @@
 					"odataVersion": "2.0",
 					"localUri": "localService/metadata.xml"
 				}
+			},
+			"ZV_ZVT18_ORDERS_HVH_CDS": {
+				"uri": "/sap/opu/odata/sap/ZV_ZVT18_ORDERS_HVH_CDS/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/ZV_ZVT18_ORDERS_HVH_CDS/metadata.xml"
+				}
+			},
+			"ZV_ZVT18_CUSTM_MD_CDS": {
+				"uri": "/sap/opu/odata/sap/ZV_ZVT18_CUSTM_MD_CDS/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/ZV_ZVT18_CUSTM_MD_CDS/metadata.xml"
+				}
 			}
 		}
 	},
@@ -73,6 +89,48 @@
 				"type": "sap.ui.model.json.JSONModel",
 				"settings": {},
 				"preload": false
+			},
+			"": {
+				"uri": "/sap/opu/odata/sap/ZV_ZVT18_CUSTM_MD_CDS/",
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "ZV_ZVT18_CUSTM_MD_CDS",
+				"preload": true
+			},
+			"customersModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"preload": false
+			},
+			"customer": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"preload": false
+			},
+			"order": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"preload": false
+			},
+			"orders": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"preload": false
+			},
+			"ordersModel": {
+				"uri": "/sap/opu/odata/sap/ZV_ZVT18_ORDERS_HVH_CDS/",
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "ZV_ZVT18_ORDERS_HVH_CDS",
+				"preload": true
 			}
 		},
 		"resources": {
@@ -90,11 +148,21 @@
 				"viewPath": "com.delaware.md.trac2018.view",
 				"controlId": "idAppControl"
 			},
-			"routes": [{
-				"name":"Master",
-				"pattern":"",
-				"target":"Master"
-			}],
+			"routes": [
+				{
+					"name": "Master",
+					"pattern": "",
+					"target": "Master"
+				},
+				{
+					"name": "Detail",
+					"pattern": "customer/{customerNumber}",
+					"target": [
+						"Master",
+						"Detail"
+					]
+				}
+			],
 			"targets": {
 				"Master": {
 					"viewType": "XML",
@@ -107,7 +175,8 @@
 				},
 				"Detail": {
 					"viewType": "XML",
-					"viewName": "Detail"
+					"viewName": "Detail",
+					"controlAggregation": "midColumnPages"
 				}
 			}
 		}

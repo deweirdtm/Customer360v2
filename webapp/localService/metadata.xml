@@ -15,7 +15,7 @@
 			</EntityType>
 			<EntityType Name="CustomerDemographic">
 				<Key>
-					<PropertyRef Name="CustomerTypeID"/>
+					<PropertyRef Name="CustomerTypeID"/> 
 				</Key>
 				<Property Name="CustomerTypeID" Type="Edm.String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true"/>
 				<Property Name="CustomerDesc" Type="Edm.String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false"/>

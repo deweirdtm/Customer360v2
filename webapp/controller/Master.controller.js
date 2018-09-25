@@ -1,10 +1,23 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
-], function (Controller) {
+	"com/delaware/md/trac2018/controller/BaseController",
+	"com/delaware/md/trac2018/model/formatter"
+], function (BaseController,formatter) {
 	"use strict";
 
-	return Controller.extend("com.delaware.md.trac2018.controller.Master", {
-
+	return BaseController.extend("com.delaware.md.trac2018.controller.Master", {
+		
+		formatter: formatter,
+		
+		onCustomerPress: function(oEvent){
+			var oCustomer = oEvent.getSource().getBindingContext().getObject();
+			this.getModel("customer").setData(oCustomer); 
+			this.getRouter().navTo("Detail",{
+				customerNumber: oCustomer.CustomerNumber
+			});
+			
+			this.getModel("appView").setProperty("/layout","TwoColumnsMidExpanded");
+		},
+		
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
@@ -28,9 +41,21 @@ sap.ui.define([
 		 * This hook is the same one that SAPUI5 controls get after being rendered.
 		 * @memberOf com.delaware.md.trac2018.view.Master
 		 */
-		//	onAfterRendering: function() {
-		//
-		//	},
+		onAfterRendering: function() {
+			var oModel = this.getView().getModel();
+				var self = this;
+				oModel.read("/ZV_ZVT18_CUSTM_MD", {
+					success: function(oData){
+						self.getView().getModel("customersModel").setData({
+							"customers": oData.results	
+						});
+						console.log(oData);
+					},
+					error: function(oError){
+						console.log(oError);
+					}
+				});
+		},
 
 		/**
 		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.

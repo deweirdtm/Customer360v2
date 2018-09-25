@@ -5,7 +5,7 @@ sap.ui.define([
 
 	return BaseController.extend("com.delaware.md.trac2018.controller.App", {
 		onInit: function(){
-			this.getModel("appView").setProperty("/layout", "OneColumn");
+			this.getModel("appView").setProperty("/layout", "OneColumn"); 
 		}
 	});
 });

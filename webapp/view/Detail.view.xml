@@ -3,7 +3,58 @@
 	<App>
 		<pages>
 			<Page title="Title">
-				<content></content>
+				<content>
+					<ObjectHeader
+						title="{customer>/name}"
+						icon="sap-icon://customer">
+						<attributes>
+							<ObjectAttribute text="{customer>/city}"/>
+							<ObjectAttribute text="{customer>/country}"/>
+							<ObjectAttribute text="{customer>/CustomerNumber}"/>
+						</attributes>
+					</ObjectHeader>
+					
+					
+					<Table id="orders" items="{orders>/}">
+						<headerToolbar>
+							<Toolbar>
+								<content>
+									<Title text="Orders" level="H2"/>
+								</content>
+							</Toolbar>
+						</headerToolbar>
+						<columns>
+							<Column>
+								<Text text="Sales order number" />
+							</Column>
+							<Column>
+								<Text text="Purchase order number" />
+							</Column>
+							<Column>
+								<Text text="Delivery date" />
+							</Column>
+							<Column>
+								<Text text="Value" />
+							</Column>
+						</columns>
+						<items>
+
+							<ColumnListItem>
+								<cells>
+									<Text 
+										text ="{orders>OrderNumber}"/>
+										<Text 
+										text ="{orders>Id}"/>
+										<ObjectAttribute text="{path:'orders>RequestDeliveryDate', formatter: '.formatter.formatCorrectDate'}" /> 
+										<Text 
+										text ="{orders>NetValue}"/>
+								</cells>
+							</ColumnListItem>
+							
+						</items>
+					</Table>
+					
+				</content>
 			</Page>
 		</pages>
 	</App>

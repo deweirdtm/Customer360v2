@@ -12,7 +12,7 @@ sap.ui.define([
 			 * @returns {sap.ui.core.routing.Router} the router for this component
 			 */
 			getRouter : function () {
-				return this.getOwnerComponent().getRouter();
+				return this.getOwnerComponent().getRouter(); 
 			},
 
 			/**

@@ -2,5 +2,5 @@
 	displayBlock="true" xmlns="sap.f" xmlns:m="sap.m">
 	<m:App>
 		<FlexibleColumnLayout id="idAppControl" layout="{appView>/layout}"></FlexibleColumnLayout>
-	</m:App>
+	</m:App> 
 </mvc:View>

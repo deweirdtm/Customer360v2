@@ -4,7 +4,15 @@
 		<pages>
 			<Page title="Title">
 				<content>
-					<Text text="This is the master view."/>
+					<List id="customerList" items="{/ZV_ZVT18_CUSTM_MD}">
+						<ObjectListItem title="{name}" type="Navigation" press="onCustomerPress">
+							<attributes>
+								<ObjectAttribute title="{i18n>Master.List.CustomerNumber}" text="{path:'CustomerNumber', formatter: '.formatter.addLeadingZeros'}" /> 
+								<ObjectAttribute title="{i18n>Master.List.City}" text="{city}" />
+								<ObjectAttribute title="{i18n>Master.List.Country}" text="{country}"/>
+							</attributes>
+						</ObjectListItem>
+					</List>
 				</content>
 			</Page>
 		</pages>
